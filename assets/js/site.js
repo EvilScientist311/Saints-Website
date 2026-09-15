@@ -27,21 +27,62 @@ const lightbox = document.querySelector('#gallery-lightbox')
 const lightboxImage = lightbox.querySelector('img')
 const lightboxCaption = lightbox.querySelector('p')
 const lightboxClose = lightbox.querySelector('.lightbox-close')
+const lightboxPrevious = lightbox.querySelector('.lightbox-previous')
+const lightboxNext = lightbox.querySelector('.lightbox-next')
+const galleryButtons = [...document.querySelectorAll('.gallery-button')]
+let activeGallery = []
+let activeIndex = 0
+let touchStartX = 0
 
-document.querySelectorAll('.gallery-button').forEach(button => {
+const showImage = index => {
+  activeIndex = (index + activeGallery.length) % activeGallery.length
+  const button = activeGallery[activeIndex]
+  const image = button.querySelector('img')
+
+  lightboxImage.src = button.dataset.full
+  lightboxImage.alt = image.alt
+  lightboxCaption.textContent = image.alt
+}
+
+const openGallery = (gallery, index = 0) => {
+  activeGallery = galleryButtons.filter(button => button.dataset.gallery === gallery)
+  showImage(index)
+  lightbox.showModal()
+  lightboxClose.focus()
+}
+
+galleryButtons.forEach(button => {
   button.addEventListener('click', () => {
-    const image = button.querySelector('img')
-
-    lightboxImage.src = button.dataset.full
-    lightboxImage.alt = image.alt
-    lightboxCaption.textContent = image.alt
-    lightbox.showModal()
-    lightboxClose.focus()
+    const group = galleryButtons.filter(item => item.dataset.gallery === button.dataset.gallery)
+    openGallery(button.dataset.gallery, group.indexOf(button))
   })
 })
 
+document.querySelectorAll('.view-all-photos').forEach(button => {
+  button.addEventListener('click', () => openGallery(button.dataset.gallery))
+})
+
 lightboxClose.addEventListener('click', () => lightbox.close())
+lightboxPrevious.addEventListener('click', () => showImage(activeIndex - 1))
+lightboxNext.addEventListener('click', () => showImage(activeIndex + 1))
 
 lightbox.addEventListener('click', event => {
   if (event.target === lightbox) lightbox.close()
 })
+
+lightbox.addEventListener('keydown', event => {
+  if (event.key === 'ArrowLeft') showImage(activeIndex - 1)
+  if (event.key === 'ArrowRight') showImage(activeIndex + 1)
+})
+
+lightbox.addEventListener('touchstart', event => {
+  touchStartX = event.changedTouches[0].screenX
+}, { passive: true })
+
+lightbox.addEventListener('touchend', event => {
+  const distance = event.changedTouches[0].screenX - touchStartX
+
+  if (Math.abs(distance) < 50) return
+
+  showImage(activeIndex + (distance < 0 ? 1 : -1))
+}, { passive: true })
