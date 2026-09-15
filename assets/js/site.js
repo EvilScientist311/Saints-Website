@@ -58,10 +58,6 @@ galleryButtons.forEach(button => {
   })
 })
 
-document.querySelectorAll('.view-all-photos').forEach(button => {
-  button.addEventListener('click', () => openGallery(button.dataset.gallery))
-})
-
 lightboxClose.addEventListener('click', () => lightbox.close())
 lightboxPrevious.addEventListener('click', () => showImage(activeIndex - 1))
 lightboxNext.addEventListener('click', () => showImage(activeIndex + 1))
