@@ -46,15 +46,11 @@ body.homepage #header::after { display: none; }
 .extras-rates b { color: #fff; font-size: 1.35rem; }
 .extras-panel .button { background: var(--saints-gold); }
 .photo-section { padding-top: 5rem; }
-.saints-gallery { position: relative; display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, 13rem); gap: 1rem; margin-top: 2.8rem; }
-.saints-gallery figure { display: none; margin: 0; overflow: hidden; }
-.saints-gallery figure.is-visible { display: block; }
-.saints-gallery figure.is-featured { grid-row: 1 / 3; }
-.gallery-slot-1 { order: 1; }
-.gallery-slot-2 { order: 2; }
-.gallery-slot-3 { order: 3; }
-.gallery-slot-4 { order: 4; }
-.gallery-slot-5 { order: 5; }
+.saints-gallery { position: relative; margin-top: 2.8rem; }
+.gallery-track { display: grid; grid-template-columns: 37rem repeat(5, 18rem); grid-template-rows: repeat(2, 12rem); grid-auto-flow: column; grid-auto-columns: 18rem; gap: 1rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.gallery-track::-webkit-scrollbar { display: none; }
+.saints-gallery figure { margin: 0; overflow: hidden; scroll-snap-align: start; }
+.saints-gallery figure:first-child { grid-column: 1; grid-row: 1 / 3; }
 .gallery-button { display: block; width: 100%; height: 100%; min-height: 0; padding: 0; border: 0; border-radius: 0; background: none; cursor: zoom-in; overflow: hidden; }
 .saints-gallery img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
 .saints-gallery figure:hover img { transform: scale(1.025); }
@@ -103,9 +99,8 @@ body.homepage #header::after { display: none; }
   #header .island-label { font-size: .66rem; }
   #header h1 a { font-size: clamp(1.65rem, 7.5vw, 2.7rem); }
   .saints-main-image img { height: 22rem; }
-  .saints-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 15rem 8rem; gap: .75rem; }
-  .saints-gallery figure.is-featured { grid-column: 1 / 3; grid-row: auto; }
-  .saints-gallery figure.gallery-slot-4, .saints-gallery figure.gallery-slot-5 { display: none; }
+  .gallery-track { grid-template-columns: 72vw repeat(5, 72vw); grid-template-rows: repeat(2, 9rem); grid-auto-columns: 72vw; gap: .75rem; }
+  .saints-gallery figure:first-child { grid-column: 1; grid-row: 1 / 3; }
   .gallery-grid-nav { top: auto; bottom: -3.75rem; transform: none; }
   .gallery-grid-previous { left: 0; }
   .gallery-grid-next { right: 0; }
