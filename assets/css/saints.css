@@ -68,11 +68,18 @@ body.homepage #header::after { display: none; }
 #footer a { color: #fff; }
 #footer h3 { color: #fff; }
 #footer .row > section { text-align: center; }
+.contact-heading { margin-bottom: 2.5rem; text-align: center; }
+.contact-heading p { margin: 0 0 .45rem; color: var(--saints-gold); font-size: .78rem; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; }
+#footer .contact-heading h2 { margin: 0; color: #fff; font-family: Georgia, serif; font-size: 2.25rem; font-weight: 400; }
 .footer-contact-row { align-items: stretch; }
-.footer-contact-row .contact-card { display: flex; flex-direction: column; align-items: center; }
-.footer-contact-row .contact-card header { height: 6rem; margin: 0 0 1rem; display: flex; align-items: center; }
-.footer-contact-row .contact-card h3 { margin: 0 0 .5rem; }
-.footer-contact-row .contact-card p { margin: 0; min-height: 2rem; }
+.footer-contact-row .contact-card { display: flex; align-items: stretch; }
+#footer .contact-action { display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: center; min-height: 18rem; padding: 2.5rem 1rem; border: 1px solid rgba(255,255,255,.2); background: #31584c; color: #fff; text-decoration: none; transition: transform .2s ease, background-color .2s ease, border-color .2s ease; }
+#footer .contact-card:nth-child(2) .contact-action { background: #3d4c48; }
+#footer .contact-action:hover { transform: translateY(-4px); border-color: var(--saints-gold); background: #3b695b; }
+.contact-action header { height: 6rem; margin: 0 0 1rem; display: flex; align-items: center; }
+.contact-action .circled { background: var(--saints-gold); color: #242025; }
+.contact-action h3 { margin: 0 0 .65rem; font-size: 1.45rem; }
+.contact-action p { margin: 0; color: #fff; font-size: 1.2rem; font-weight: 600; overflow-wrap: anywhere; }
 #navPanel::before { background: none; }
 
 @media screen and (max-width: 736px) {
@@ -89,6 +96,8 @@ body.homepage #header::after { display: none; }
   .location-copy, .location-copy header { text-align: center; }
   .extras-panel { margin-top: 3rem; padding: 2.2rem 1.25rem; }
   .extras-rates { grid-template-columns: 1fr; }
+  #footer .contact-heading h2 { font-size: 1.8rem; }
+  #footer .contact-action { min-height: 14rem; }
   #navButton { z-index: 10005; background: rgba(28, 32, 29, .96); box-shadow: 0 1px 0 rgba(255,255,255,.12); }
   #navPanel { z-index: 10006; }
   .saints-main-image { position: relative; z-index: 0; }
